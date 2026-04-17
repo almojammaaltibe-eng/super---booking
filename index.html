@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لمجمع الطبي بشبراملس | رعاية من القلب عشان كلنا أهل</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0077b6;
+            --secondary: #00b4d8;
+            --accent: #e63946;
+            --success: #27ae60;
+            --dark: #2d3436;
+            --light: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: #fff; color: var(--dark); line-height: 1.6; }
+
+        /* Navigation */
+        nav {
+            background: white; padding: 15px 5%; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 2px 20px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { font-weight: 900; font-size: 1.6rem; color: var(--primary); }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0,119,182,0.9), rgba(0,180,216,0.8)), 
+                        url('https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-position: center; padding: 100px 5%; color: white; text-align: center;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9; }
+
+        /* Emergency Flash */
+        .status-bar { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: -40px; }
+        .status-item {
+            background: white; color: var(--dark); padding: 20px 30px; border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 15px;
+        }
+        .status-item i { color: var(--accent); font-size: 1.8rem; }
+
+        /* Common Section Styles */
+        .container { padding: 60px 5%; }
+        .section-title { text-align: center; margin-bottom: 50px; position: relative; color: var(--primary); }
+        .section-title::after { content: ''; width: 80px; height: 4px; background: var(--secondary); display: block; margin: 10px auto; border-radius: 2px;}
+
+        /* Schedule Tabs Section */
+        .schedule-wrapper { background-color: var(--light); border-radius: 20px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .tab-btn {
+            background: white; border: 2px solid var(--primary); color: var(--primary);
+            padding: 10px 25px; border-radius: 30px; font-size: 1rem; font-weight: bold;
+            cursor: pointer; transition: 0.3s; outline: none;
+        }
+        .tab-btn:hover, .tab-btn.active { background: var(--primary); color: white; }
+        
+        .tab-content { display: none; animation: fadeEffect 0.5s; }
+        @keyframes fadeEffect { from {opacity: 0;} to {opacity: 1;} }
+        
+        .schedule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .appointment-card {
+            background: white; border-right: 5px solid var(--primary); padding: 20px;
+            border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .appointment-time { color: var(--accent); font-weight: bold; margin-bottom: 10px; display: flex; align-items: center; gap: 5px; }
+        .appointment-doc { font-size: 1.2rem; color: var(--dark); font-weight: bold; margin-bottom: 5px; }
+        .appointment-spec { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
+        .book-btn {
+            background: var(--success); color: white; text-align: center; padding: 8px 15px;
+            border-radius: 5px; text-decoration: none; font-size: 0.9rem; transition: 0.3s;
+        }
+        .book-btn:hover { background: #219653; }
+
+        /* Clinics Grid (From previous) */
+        .clinics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .clinic-card { background: var(--light); padding: 25px; border-radius: 20px; transition: 0.3s; }
+        .clinic-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .clinic-card h3 { color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        .doctor-list { list-style: none; }
+        .doctor-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 10px; font-weight: 600; }
+        .doctor-list li i { color: var(--success); font-size: 0.9rem; }
+        .job-title { font-size: 0.85rem; color: #666; font-weight: 400; }
+
+        /* Contact & Footer */
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;
+            background: var(--primary); color: white; padding: 50px 5%; border-radius: 30px; margin-top: 50px;
+        }
+        .contact-item h4 { margin-bottom: 10px; }
+        .contact-item a { color: white; text-decoration: none; }
+        
+        .whatsapp-float {
+            position: fixed; bottom: 30px; left: 30px; background: #25d366; color: white;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 1000;
+        }
+        footer { text-align: center; padding: 30px; background: #f1f1f1; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">🏥 المجمع الطبي بشبراملس</div>
+        <div class="nav-links">
+            <a href="#schedule-section">مواعيد العيادات</a>
+            <a href="tel:0404650337" style="color: var(--primary);"><i class="fas fa-phone"></i> اتصل الآن</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>رعاية من القلب عشان كلنا أهل
+</h1>
+        <p>نخبة من الأطباء المتخصصين وأحدث الأجهزة الطبية في قلب شبراملس</p>
+    </section>
+
+    <div class="status-bar">
+        <div class="status-item"><i class="fas fa-ambulance"></i><div><strong>الطوارئ</strong><br>24 ساعة يومياً</div></div>
+        <div class="status-item"><i class="fas fa-microscope"></i><div><strong>المعمل</strong><br>خدمة 24 ساعة</div></div>
+        <div class="status-item"><i class="fas fa-check-circle"></i><div><strong>الرعاية</strong><br>طوال الأسبوع</div></div>
+    </div>
+
+    <div class="container" id="schedule-section">
+        <h2 class="section-title">جدول مواعيد العيادات</h2>
+        
+        <div class="schedule-wrapper">
+            <div class="tabs">
+                <button class="tab-btn" onclick="openDay(event, 'Sat')" id="defaultOpen">السبت</button>
+                <button class="tab-btn" onclick="openDay(event, 'Sun')">الأحد</button>
+                <button class="tab-btn" onclick="openDay(event, 'Mon')">الإثنين</button>
+                <button class="tab-btn" onclick="openDay(event, 'Tue')">الثلاثاء</button>
+                <button class="tab-btn" onclick="openDay(event, 'Wed')">الأربعاء</button>
+                <button class="tab-btn" onclick="openDay(event, 'Thu')">الخميس</button>
+                <button class="tab-btn" onclick="openDay(event, 'Fri')">الجمعة</button>
+            </div>
+
+            <div id="Sat" class="tab-content">
+                <div class="schedule-grid">
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 02:00 ظهراً</div><div class="appointment-doc">د. محمد مجدي سعده</div><div class="appointment-spec">أخصائي طب وجراحة العيون</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 04:00 عصراً</div><div class="appointment-doc">د. رنا حمودة</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 07:00 مساءً</div><div class="appointment-doc">د. علي منتصر</div><div class="appointment-spec">مسالك بولية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 07:00 مساءً</div><div class="appointment-doc">د. محمد هيكل</div><div class="appointment-spec">أنف وأذن وحنجرة</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 09:00 مساءً</div><div class="appointment-doc">د. خالد الداهس</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                </div>
+            </div>
+
+            <div id="Sun" class="tab-content">
+                <div class="schedule-grid">
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 03:00 مساءً</div><div class="appointment-doc">د. محمد علاء</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 04:00 عصراً</div><div class="appointment-doc">د. إبراهيم مطاوع</div><div class="appointment-spec">عظام وجراحة العمود الفقري</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 05:00 عصراً</div><div class="appointment-doc">د. خالد أحمد الشيخ</div><div class="appointment-spec">أخصائي الرمد وجراحات العيون</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 06:00 مساءً</div><div class="appointment-doc">د. أحمد مسعد الغلبان</div><div class="appointment-spec">قلب وأوعية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 07:00 مساءً</div><div class="appointment-doc">د. علي منتصر</div><div class="appointment-spec">مسالك بولية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 08:00 مساءً</div><div class="appointment-doc">د. محمود دهب</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                </div>
+            </div>
+
+            <div id="Mon" class="tab-content">
+                <div class="schedule-grid">
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 01:00 ظهراً</div><div class="appointment-doc">د. هيام السمراوي</div><div class="appointment-spec">نساء وتوليد</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 04:00 عصراً</div><div class="appointment-doc">د. رنا حمودة</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 06:00 مساءً</div><div class="appointment-doc">د. جينا عبدالله الشافعي</div><div class="appointment-spec">أطفال وحديثي الولادة</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 07:00 مساءً</div><div class="appointment-doc">د. علي منتصر</div><div class="appointment-spec">مسالك بولية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 08:00 مساءً</div><div class="appointment-doc">د. محمد سلام</div><div class="appointment-spec">جراحة مخ وأعصاب</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 09:00 مساءً</div><div class="appointment-doc">د. خالد الداهس</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                </div>
+            </div>
+
+            <div id="Tue" class="tab-content">
+                <div class="schedule-grid">
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 02:00 ظهراً</div><div class="appointment-doc">د. محمد مجدي سعده</div><div class="appointment-spec">أخصائي طب وجراحة العيون</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 03:00 مساءً</div><div class="appointment-doc">د. محمد علاء</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 04:00 عصراً</div><div class="appointment-doc">د. إبراهيم مطاوع</div><div class="appointment-spec">عظام وجراحة العمود الفقري</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 04:00 مساءً</div><div class="appointment-doc">د. سناء الحماقي</div><div class="appointment-spec">أنف وأذن</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 06:00 مساءً</div><div class="appointment-doc">د. آلاء الحوت</div><div class="appointment-spec">نفسية وعصبية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 07:00 مساءً</div><div class="appointment-doc">د. علي منتصر</div><div class="appointment-spec">مسالك بولية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 08:00 مساءً</div><div class="appointment-doc">د. محمود دهب</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                </div>
+            </div>
+
+            <div id="Wed" class="tab-content">
+                <div class="schedule-grid">
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 04:00 عصراً</div><div class="appointment-doc">د. رنا حمودة</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 06:00 مساءً</div><div class="appointment-doc">د. أحمد مسعد الغلبان</div><div class="appointment-spec">قلب وأوعية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 06:00 مساءً</div><div class="appointment-doc">د. جينا عبدالله الشافعي</div><div class="appointment-spec">أطفال وحديثي الولادة</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 07:00 مساءً</div><div class="appointment-doc">د. علي منتصر</div><div class="appointment-spec">مسالك بولية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 09:00 مساءً</div><div class="appointment-doc">د. خالد الداهس</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                </div>
+            </div>
+
+            <div id="Thu" class="tab-content">
+                <div class="schedule-grid">
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 02:00 ظهراً</div><div class="appointment-doc">د. محمد مجدي سعده</div><div class="appointment-spec">أخصائي طب وجراحة العيون</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 03:00 مساءً</div><div class="appointment-doc">د. محمد علاء</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 04:00 عصراً</div><div class="appointment-doc">د. إبراهيم مطاوع</div><div class="appointment-spec">عظام وجراحة العمود الفقري</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 05:00 عصراً</div><div class="appointment-doc">د. أسامة الخشن</div><div class="appointment-spec">صدر</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 06:00 مساءً</div><div class="appointment-doc">د. أحمد مسعد الغلبان</div><div class="appointment-spec">قلب وأوعية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 07:00 مساءً</div><div class="appointment-doc">د. محمد هيكل</div><div class="appointment-spec">أنف وأذن وحنجرة</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 07:00 مساءً</div><div class="appointment-doc">د. علي منتصر</div><div class="appointment-spec">مسالك بولية</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 08:00 مساءً</div><div class="appointment-doc">د. محمود دهب</div><div class="appointment-spec">أسنان</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                </div>
+            </div>
+
+            <div id="Fri" class="tab-content">
+                <div class="schedule-grid">
+                    <div class="appointment-card"><div class="appointment-time"><i class="far fa-clock"></i> 02:00 ظهراً</div><div class="appointment-doc">د. عزيز بدير</div><div class="appointment-spec">استشاري الكبد والجهاز الهضمي باطنة ومناظير</div><a href="https://almojammaaltibe-eng.github.io/super-medical-complex/" class="book-btn">احجز الآن</a></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="contact-grid" id="contact">
+            <div class="contact-item"><h4>📍 العنوان</h4><p>شبراملس – امتداد شارع السوق - اعلي مسجد عباد الرحمن</p></div>
+            <div class="contact-item"><h4>📞 أرقام التواصل</h4><a href="tel:0404650337">040 4650337</a><br><a href="tel:0404658010">040 4658010</a></div>
+            <div class="contact-item"><h4>📲 واتساب وحجز</h4><a href="https://wa.me/201020580002">01020580002</a><br><a href="tel:01122593433">01122593433</a></div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/201020580002" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <footer><p>جميع الحقوق محفوظة &copy; 2026 المجمع الطبي بشبراملس  </p></footer>
+
+    <script>
+        function openDay(evt, dayName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(dayName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        // فتح يوم السبت بشكل افتراضي عند تحميل الصفحة
+        document.getElementById("defaultOpen").click();
+    </script>
+</body>
+</html>
